@@ -1,7 +1,7 @@
 <?php
 
 // We need a function that can add ids to HTML header tags
-function retitle($match) {
+function bs_retitle($match) {
     list($_unused, $h3, $title) = $match;
 
     $id = strtolower(strtr($title, " .", "--"));
@@ -49,7 +49,7 @@ $html = MarkdownExtra::defaultTransform($text);
                 $html = str_replace('</ul>', '</div">', $html);
                 $html = str_replace('<li><a ', '<a class="list-group-item" ', $html);
                 $html = str_replace('</li>', '', $html);
-                $html = preg_replace_callback("#<(h[1-6])>(.*?)</\\1>#", "retitle", $html);
+                $html = preg_replace_callback("#<(h[1-6])>(.*?)</\\1>#", "bs_retitle", $html);
                 $html = str_replace('</pre>', '</pre><p><button class="btn btn-primary btn-sm insert-code">Insert Example <i class="glyphicon glyphicon-share-alt"></i></button></p>', $html);
                 echo $html;
             ?>
